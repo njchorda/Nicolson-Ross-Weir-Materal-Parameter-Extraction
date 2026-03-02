@@ -53,7 +53,7 @@ Accurate knowledge of the physical sample thickness `L` is one of the most impor
 ### Sample Holder / Sample Length Selection
 The sample length should be chosen to be approximately **one-quarter of the guided wavelength** within the material at the frequency of interest:
 
-$$L \approx \frac{\lambda_g}{4} = \frac{1}{4} \cdot \frac{1}{\sqrt{\varepsilon_r \mu_r / \lambda_0^2 - 1/\lambda_c^2}}$$
+$$L \approx \frac{\lambda_g}{4} = \frac{\lambda_0}{4\sqrt{\varepsilon_r \mu_r - \left(\frac{\lambda_0}{\lambda_c}\right)^2}}$$
 
 For **high-permittivity materials**, the guided wavelength inside the sample is shorter, so a **thinner sample holder must be used** to satisfy this condition. Using a sample that is too long relative to the guided wavelength can introduce phase ambiguity errors in the extraction.
 
@@ -81,3 +81,4 @@ magtanD = 8.9186e-06
 - Nicholson, A. M., & Ross, G. F. (1970). *Measurement of the intrinsic properties of materials by time-domain techniques.* IEEE Transactions on Instrumentation and Measurement.
 - Weir, W. B. (1974). *Automatic measurement of complex dielectric constant and permeability at microwave frequencies.* Proceedings of the IEEE.
 - Janezic, M. D., & Jargon, J. A. (2004). [*Complex Permittivity Determination from Propagation Constant Measurements.*](https://nvlpubs.nist.gov/nistpubs/Legacy/TN/nbstechnicalnote1536.pdf) NIST Technical Note 1536.
+
