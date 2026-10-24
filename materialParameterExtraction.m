@@ -31,7 +31,7 @@ L = 6.3e-3; % Sample thickness of 6.3 mm
 %% NRW Calculations
 X = (S.S11.^2 - S.S21.^2 + 1)./(2*S.S11);
 
-Gam1 = zeros(length(S.f), 1);
+Gam1 = zeros(1, length(S.f));
 for i = 1:length(S.f)
     temp = X(i) + sqrt(X(i).^2 - 1);
     if abs(temp) <= 1
@@ -55,11 +55,11 @@ magTanD = imag(ura)./real(ura);
 
 f = S.f;
 derurdf = diff(era.*ura)./diff(f);
-derurdf = [0; derurdf];
+derurdf = [0 derurdf];
 tCalc = (1./c0.^2).*L.*(f.*era.*ura + f.^2.*0.5.*derurdf)./sqrt(era.*ura.*f.^2/c0.^2 - 1./lamc.^2);
 tCalc = real(tCalc);
 dphidf = diff(unwrap(angle(Z1)))./diff(f);
-dphidf = [0; dphidf];
+dphidf = [0 dphidf];
 tMeas = -1*dphidf./(2*pi);
 
 
@@ -71,18 +71,18 @@ plot(S.f/1e9, real(era), 'r')
 hold on
 plot(S.f/1e9, abs(imag(era)), 'b')
 ylabel('\epsilon')
-legend({'Real', 'Imag.'}, 'Location','southeast');
-ylim([0 8])
+legend({'Real', 'Imag.'}, 'Location','best');
+ylim([0 ceil(1.5*max(real(era)))])
 % ylim([0 14])
 set(gca, 'FontSize', 20, 'FontName', 'Times New Roman');
 set(findall(gcf, 'Type', 'Line'), 'LineWidth', 4);
 subplot(2, 1, 2)
 plot(S.f/1e9, abs(tanD), 'r')
 % ylim([0 1])
-ylim([0 0.08])
+% ylim([0 0.08])
 ylabel('tan\delta')
 xlabel('Frequency (GHz)')
-xlim([8 12])
+% xlim([8 12])
 set(gca, 'FontSize', 20, 'FontName', 'Times New Roman');
 set(findall(gcf, 'Type', 'Line'), 'LineWidth', 4);
 fig1.Position = [680 180 1186 698];
@@ -93,14 +93,14 @@ plot(S.f/1e9, real(ura), 'r')
 hold on
 plot(S.f/1e9, abs(imag(ura)), 'b')
 ylabel('\mu')
-legend({'Real', 'Imag.'}, 'Location','southeast');
-ylim([0 8])
+legend({'Real', 'Imag.'}, 'Location','best');
+ylim([0 ceil(1.5*max(real(ura)))])
 set(gca, 'FontSize', 20, 'FontName', 'Times New Roman');
 set(findall(gcf, 'Type', 'Line'), 'LineWidth', 4);
 
 subplot(2, 1, 2)
 plot(S.f/1e9, abs(magTanD), 'r')
-ylim([0 0.08])
+% ylim([0 0.08])
 ylabel('tan\delta_m')
 xlabel('Frequency (GHz)')
 xlim([8 12])
